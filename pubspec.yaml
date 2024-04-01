@@ -27,21 +27,30 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/welcome/
+  fonts:
+    - family: SF-Pro-Rounded
+      fonts:
+        - asset: assets/fonts/SF-Pro-Rounded-Regular.otf
+        - asset: assets/fonts/SF-Pro-Rounded-Bold.otf
+        - asset: assets/fonts/SF-Pro-Rounded-Semibold.otf
 
 flutter_launcher_icons:
-  image_path: "assets/app-icon.png"
+  image_path: "assets/images/app-icon.png"
   android: true
   ios: true
   remove_alpha_ios: true
 
 flutter_native_splash:
   color: "#e5e5ea"
-  image: assets/app-splash-icon.png
+  image: assets/images/app-splash-icon.png
   color_dark: "#141927"
-  image_dark: assets/app-splash-icon.png
+  image_dark: assets/images/app-splash-icon.png
 
   android_12:
     color: "#e5e5ea"
-    image: assets/app-splash-icon.png
+    image: assets/images/app-splash-icon.png
     color_dark: "#141927"
-    image_dark: assets/app-splash-icon.png
+    image_dark: assets/images/app-splash-icon.png

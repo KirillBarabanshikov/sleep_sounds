@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sleep_sounds/pages/pages.dart';
 
 import 'theme/theme.dart';
 
@@ -13,24 +14,10 @@ class App extends ConsumerWidget {
     return MaterialApp(
       title: 'Sleep sounds',
       themeMode: themeMode,
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      home: Scaffold(
-        body: Center(
-          child: Row(
-            children: [
-              const Text('TEXT test'),
-              Switch(
-                value: themeMode.name == 'dark',
-                onChanged: (value) {
-                  ref
-                      .read(currentThemeModeProvider.notifier)
-                      .set(value ? ThemeMode.dark : ThemeMode.light);
-                },
-              )
-            ],
-          ),
-        ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      home: const Scaffold(
+        body: WelcomePage(),
       ),
     );
   }
