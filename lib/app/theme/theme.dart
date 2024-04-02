@@ -43,6 +43,7 @@ class AppTheme {
     textTheme: AppTextTheme.lightTextTheme,
     elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
     bottomSheetTheme: AppBottomSheetTheme.lightBottomSheetTheme,
+    bottomNavigationBarTheme: AppBottomNavigationBarTheme.lightBottomNavigationBarTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -58,5 +59,6 @@ class AppTheme {
     textTheme: AppTextTheme.darkTextTheme,
     elevatedButtonTheme: AppElevatedButtonTheme.darkElevatedButtonTheme,
     bottomSheetTheme: AppBottomSheetTheme.darkBottomSheetTheme,
+    bottomNavigationBarTheme: AppBottomNavigationBarTheme.darkBottomNavigationBarTheme,
   );
 }
