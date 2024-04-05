@@ -55,6 +55,7 @@ class AppTheme {
       background: const Color.fromRGBO(20, 25, 39, 1),
       primary: const Color.fromRGBO(72, 112, 255, 1),
       secondary: const Color.fromRGBO(33, 40, 63, 1),
+      tertiary: const Color.fromRGBO(45, 52, 75, 1),
     ),
     textTheme: AppTextTheme.darkTextTheme,
     elevatedButtonTheme: AppElevatedButtonTheme.darkElevatedButtonTheme,

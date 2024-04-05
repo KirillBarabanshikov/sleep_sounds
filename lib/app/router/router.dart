@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../../entities/pack/pack.dart';
 import '../../pages/pages.dart';
 import '../layouts/layouts.dart';
 
@@ -26,5 +27,12 @@ final appRouter = GoRouter(
         ),
       ],
     ),
+    GoRoute(
+      path: '/pack-details',
+      builder: (context, state) {
+        final PackModel pack = state.extra as PackModel;
+        return PackDetailPage(pack: pack);
+      },
+    )
   ],
 );
