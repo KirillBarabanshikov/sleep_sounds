@@ -61,5 +61,6 @@ class AppTheme {
     elevatedButtonTheme: AppElevatedButtonTheme.darkElevatedButtonTheme,
     bottomSheetTheme: AppBottomSheetTheme.darkBottomSheetTheme,
     bottomNavigationBarTheme: AppBottomNavigationBarTheme.darkBottomNavigationBarTheme,
+    dividerTheme: AppDividerTheme.darkDividerTheme,
   );
 }

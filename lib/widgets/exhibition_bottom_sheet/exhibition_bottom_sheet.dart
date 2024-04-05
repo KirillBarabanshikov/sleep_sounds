@@ -17,8 +17,10 @@ class ExhibitionBottomSheet extends StatefulWidget {
 
 class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  final _scrollController = ScrollController();
+  bool _isOpen = false;
 
-  double get _maxHeight => MediaQuery.of(context).size.height - 44;
+  double get _maxHeight => MediaQuery.of(context).size.height - 70;
 
   @override
   void initState() {
@@ -46,10 +48,14 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
 
     final double flingVelocity = details.velocity.pixelsPerSecond.dy / _maxHeight;
     if (flingVelocity < 0.0) {
+      _isOpen = true;
       _controller.fling(velocity: math.max(2.0, -flingVelocity));
     } else if (flingVelocity > 0.0) {
+      _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.bounceIn);
+      _isOpen = false;
       _controller.fling(velocity: math.min(-2.0, -flingVelocity));
     } else {
+      _isOpen = _controller.value < 0.5 ? false : true;
       _controller.fling(velocity: _controller.value < 0.5 ? -2.0 : 2.0);
     }
   }
@@ -69,30 +75,36 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
           child: GestureDetector(
             onVerticalDragUpdate: _handleDragUpdate,
             onVerticalDragEnd: _handleDragEnd,
-            child: SafeArea(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.background,
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 8, bottom: 12),
-                        width: 39,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.tertiary,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.background,
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 8, bottom: 12),
+                      width: 39,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.tertiary,
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    widget.child,
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: CustomScrollView(
+                      controller: _scrollController,
+                      physics: _isOpen ? null : const NeverScrollableScrollPhysics(),
+                      slivers: [
+                        SliverToBoxAdapter(child: widget.child),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
