@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 class ExhibitionBottomSheet extends StatefulWidget {
   const ExhibitionBottomSheet({
     super.key,
-    required this.child,
+    required this.slivers,
   });
 
-  final Widget child;
+  final List<Widget> slivers;
 
   @override
   State<ExhibitionBottomSheet> createState() => _ExhibitionBottomSheetState();
@@ -34,6 +34,7 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
   @override
   void dispose() {
     _controller.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -51,10 +52,11 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
       _isOpen = true;
       _controller.fling(velocity: math.max(2.0, -flingVelocity));
     } else if (flingVelocity > 0.0) {
-      _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.bounceIn);
+      _scrollController.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.bounceIn);
       _isOpen = false;
       _controller.fling(velocity: math.min(-2.0, -flingVelocity));
     } else {
+      if (_controller.value < 0.5) _scrollController.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.bounceIn);
       _isOpen = _controller.value < 0.5 ? false : true;
       _controller.fling(velocity: _controller.value < 0.5 ? -2.0 : 2.0);
     }
@@ -99,9 +101,7 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
                     child: CustomScrollView(
                       controller: _scrollController,
                       physics: _isOpen ? null : const NeverScrollableScrollPhysics(),
-                      slivers: [
-                        SliverToBoxAdapter(child: widget.child),
-                      ],
+                      slivers: widget.slivers,
                     ),
                   ),
                 ],
