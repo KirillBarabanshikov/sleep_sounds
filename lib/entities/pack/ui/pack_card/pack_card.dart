@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,13 +24,20 @@ class PackCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
+                CachedNetworkImage(
+                  imageUrl: pack.imageCover,
                   width: 164,
                   height: 164,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    image: DecorationImage(image: NetworkImage(pack.imageCover)),
-                  ),
+                  imageBuilder: (context, imageProvider) {
+                    return Container(
+                      width: 164,
+                      height: 164,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        image: DecorationImage(image: imageProvider),
+                      ),
+                    );
+                  },
                 ),
                 Positioned(
                   top: 16,
@@ -39,7 +47,7 @@ class PackCard extends StatelessWidget {
                     height: 32,
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(32),
+                      shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.play_arrow),
                   ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../entities/pack/pack.dart';
@@ -25,10 +26,7 @@ class PackDetailPage extends StatelessWidget {
             left: 0,
             right: 0,
             bottom: 0,
-            child: Image.network(
-              pack.imageDetail,
-              fit: BoxFit.cover,
-            ),
+            child: CachedNetworkImage(imageUrl: pack.imageDetail, fit: BoxFit.cover),
           ),
           Positioned(
             top: 272,
