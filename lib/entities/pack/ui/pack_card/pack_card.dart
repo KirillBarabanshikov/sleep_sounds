@@ -34,6 +34,7 @@ class PackCard extends StatelessWidget {
                       height: 164,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
+                        border: Border.all(width: 1, color: theme.colorScheme.secondary),
                         image: DecorationImage(image: imageProvider),
                       ),
                     );
