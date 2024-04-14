@@ -21,7 +21,7 @@ class AppTextTheme {
     bodySmall: TextStyle(fontSize: 13, color: Color.fromRGBO(235, 235, 245, 0.6)),
     // label
     labelLarge: TextStyle(fontSize: 12, color: Color.fromRGBO(235, 235, 245, 0.6)),
-    labelMedium: TextStyle(),
+    labelMedium: TextStyle(fontSize: 10),
     labelSmall: TextStyle(),
   );
 }
