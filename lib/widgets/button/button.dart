@@ -9,14 +9,14 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     this.icon,
     this.variant = Variant.primary,
-    this.isExpended = true,
+    this.padding,
   });
 
   final String text;
   final void Function() onPressed;
   final Widget? icon;
   final Variant variant;
-  final bool isExpended;
+  final EdgeInsets? padding;
 
   ButtonStyle? _getCurrentStyle(ThemeData theme) {
     switch (variant) {
@@ -36,18 +36,17 @@ class AppButton extends StatelessWidget {
     final theme = Theme.of(context);
     final currentStyle = _getCurrentStyle(theme);
 
-    return Expanded(
-      flex: isExpended ? 1 : 0,
-      child: ElevatedButton(
-        style: currentStyle?.copyWith(padding: const MaterialStatePropertyAll(EdgeInsets.all(8))),
-        onPressed: onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (icon != null) ...[icon!, const SizedBox(width: 4)],
-            Text(text),
-          ],
-        ),
+    return ElevatedButton(
+      style: currentStyle?.copyWith(
+        padding: MaterialStatePropertyAll(padding ?? const EdgeInsets.all(8)),
+      ),
+      onPressed: onPressed,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (icon != null) ...[icon!, const SizedBox(width: 4)],
+          Text(text),
+        ],
       ),
     );
   }

@@ -1,172 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../entities/pack/pack.dart';
+import '../../widgets/widgets.dart';
 
-const data = [
-  PackModel(
-    name: 'Guitar camp',
-    description:
-        'An acoustic mix has been specially selected for you. The camping atmosphere will help you improve your sleep and your body as a whole. Your dreams will be delightful and vivid.',
-    imageCover: 'https://live.staticflickr.com/65535/53627277211_e5a73a4c6e_n.jpg',
-    imageDetail: 'https://live.staticflickr.com/65535/53627477433_9c5a1feea2_c.jpg',
-    category: 'Instrumental',
-    songs: [
-      SongModel(
-        name: 'The Guitars',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Lost Without You',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'City Lights',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Romantic',
-        song: 'song',
-      ),
-    ],
-  ),
-  PackModel(
-    name: 'Chill-hop',
-    description:
-        'An acoustic mix has been specially selected for you. The camping atmosphere will help you improve your sleep and your body as a whole. Your dreams will be delightful and vivid.',
-    imageCover: 'https://live.staticflickr.com/65535/53627721665_91d5b2fe60_n.jpg',
-    imageDetail: 'https://live.staticflickr.com/65535/53627477428_feba79a3bd_c.jpg',
-    category: 'Instrumental',
-    songs: [
-      SongModel(
-        name: 'The Guitars',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Lost Without You',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'City Lights',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Romantic',
-        song: 'song',
-      ),
-    ],
-  ),
-  PackModel(
-    name: 'Summer night',
-    description:
-        'An acoustic mix has been specially selected for you. The camping atmosphere will help you improve your sleep and your body as a whole. Your dreams will be delightful and vivid.',
-    imageCover: 'https://live.staticflickr.com/65535/53627721700_df7a00277b_n.jpg',
-    imageDetail: 'https://live.staticflickr.com/65535/53627721755_2f3709679b_c.jpg',
-    category: 'Instrumental',
-    songs: [
-      SongModel(
-        name: 'The Guitars',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Lost Without You',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'City Lights',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Romantic',
-        song: 'song',
-      ),
-    ],
-  ),
-  PackModel(
-    name: 'Awakening',
-    description:
-        'An acoustic mix has been specially selected for you. The camping atmosphere will help you improve your sleep and your body as a whole. Your dreams will be delightful and vivid.',
-    imageCover: 'https://live.staticflickr.com/65535/53627277251_ea092ab8a2_n.jpg',
-    imageDetail: 'https://live.staticflickr.com/65535/53627606494_1aa89347bf_c.jpg',
-    category: 'Instrumental',
-    songs: [
-      SongModel(
-        name: 'The Guitars',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Lost Without You',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'City Lights',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Romantic',
-        song: 'song',
-      ),
-    ],
-  ),
-  PackModel(
-    name: 'Chill-hop',
-    description:
-        'An acoustic mix has been specially selected for you. The camping atmosphere will help you improve your sleep and your body as a whole. Your dreams will be delightful and vivid.',
-    imageCover: 'https://live.staticflickr.com/65535/53627515633_8c140691fa_n.jpg',
-    imageDetail: 'https://live.staticflickr.com/65535/53627760345_4d81e43089_c.jpg',
-    category: 'Instrumental',
-    songs: [
-      SongModel(
-        name: 'The Guitars',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Lost Without You',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'City Lights',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Romantic',
-        song: 'song',
-      ),
-    ],
-  ),
-  PackModel(
-    name: 'Lullaby',
-    description:
-        'An acoustic mix has been specially selected for you. The camping atmosphere will help you improve your sleep and your body as a whole. Your dreams will be delightful and vivid.',
-    imageCover: 'https://live.staticflickr.com/65535/53627515643_b3b4eeebb0_n.jpg',
-    imageDetail: 'https://live.staticflickr.com/65535/53627645099_433893830f_c.jpg',
-    category: 'Instrumental',
-    songs: [
-      SongModel(
-        name: 'The Guitars',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Lost Without You',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'City Lights',
-        song: 'song',
-      ),
-      SongModel(
-        name: 'Romantic',
-        song: 'song',
-      ),
-    ],
-  ),
+const List<Map<String, dynamic>> _filters = [
+  {'icon': 'assets/icons/keypad.svg', 'title': 'All'},
+  {'icon': 'assets/icons/meditation.svg', 'title': 'Ambient'},
+  {'icon': 'assets/icons/infant.svg', 'title': 'For Kids'},
 ];
 
-class DiscoverPage extends StatelessWidget {
+class DiscoverPage extends ConsumerStatefulWidget {
   const DiscoverPage({super.key});
+
+  @override
+  ConsumerState createState() => _DiscoverPageState();
+}
+
+class _DiscoverPageState extends ConsumerState<DiscoverPage> {
+  String selectedFilter = 'All';
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final packList = ref.watch(packListProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -176,6 +34,40 @@ class DiscoverPage extends StatelessWidget {
             slivers: [
               const SliverToBoxAdapter(child: SizedBox(height: 44)),
               SliverToBoxAdapter(child: Text('Discover', style: theme.textTheme.titleLarge)),
+              const SliverToBoxAdapter(child: SizedBox(height: 8)),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 54,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    children: _filters.map((e) {
+                      return Row(
+                        children: [
+                          AppButton(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              bottom: 8,
+                              left: 8,
+                              right: 16,
+                            ),
+                            variant: selectedFilter == e['title'] ? Variant.primary : Variant.secondary,
+                            icon: SvgPicture.asset(
+                              e['icon'],
+                              width: 24,
+                              height: 24,
+                              colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                            ),
+                            text: e['title'],
+                            onPressed: () => setState(() => selectedFilter = e['title']),
+                          ),
+                          const SizedBox(width: 16),
+                        ],
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
               const SliverToBoxAdapter(child: SizedBox(height: 16)),
               SliverGrid.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -184,9 +76,10 @@ class DiscoverPage extends StatelessWidget {
                   mainAxisSpacing: 16,
                   mainAxisExtent: 212,
                 ),
-                itemCount: data.length,
+                itemCount: packList.length,
                 itemBuilder: (context, index) {
-                  return PackCard(pack: data[index]);
+                  final pack = packList[index];
+                  return PackCard(pack: pack);
                 },
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 16)),
