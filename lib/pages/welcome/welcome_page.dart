@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sleep_sounds/features/auth/auth.dart';
 
 final _screensData = [
   {
@@ -53,6 +54,7 @@ class _WelcomePageState extends State<WelcomePage> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.only(top: 67, bottom: 53),
         child: Column(
@@ -128,7 +130,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 onTap: () => showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return Container();
+                    return const AuthForm();
                   },
                 ),
                 child: Row(

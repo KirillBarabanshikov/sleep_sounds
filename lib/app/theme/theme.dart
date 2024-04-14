@@ -62,5 +62,9 @@ class AppTheme {
     bottomSheetTheme: AppBottomSheetTheme.darkBottomSheetTheme,
     bottomNavigationBarTheme: AppBottomNavigationBarTheme.darkBottomNavigationBarTheme,
     dividerTheme: AppDividerTheme.darkDividerTheme,
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      constraints: const BoxConstraints(maxHeight: 60),
+    ),
   );
 }
