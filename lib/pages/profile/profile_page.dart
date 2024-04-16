@@ -1,55 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
-final _data = [
+const _data = [
   [
     _SettingItem(
       name: 'premium',
       iconName: 'assets/icons/crown.svg',
-      color: const Color.fromRGBO(255, 156, 65, 1),
+      color: Color.fromRGBO(255, 156, 65, 1),
       title: 'Get premium',
-      onTap: () {},
     )
   ],
   [
     _SettingItem(
       name: 'favorite',
       iconName: 'assets/icons/star.svg',
-      color: const Color.fromRGBO(72, 112, 255, 1),
+      color: Color.fromRGBO(72, 112, 255, 1),
       title: 'Favorite',
-      onTap: () {},
+    ),
+    _SettingItem(
+      name: 'theme',
+      iconName: 'assets/icons/moon.svg',
+      color: Color.fromRGBO(72, 112, 255, 1),
+      title: 'Theme',
     )
   ],
   [
     _SettingItem(
       name: 'policy',
       iconName: 'assets/icons/document.svg',
-      color: const Color.fromRGBO(0, 217, 113, 1),
+      color: Color.fromRGBO(0, 217, 113, 1),
       title: 'Private policy',
-      onTap: () {},
     ),
     _SettingItem(
       name: 'agreement',
       iconName: 'assets/icons/documents.svg',
-      color: const Color.fromRGBO(0, 217, 113, 1),
+      color: Color.fromRGBO(0, 217, 113, 1),
       title: 'License agreement',
-      onTap: () {},
     ),
   ],
   [
     _SettingItem(
       name: 'rate',
       iconName: 'assets/icons/drawing_compass.svg',
-      color: const Color.fromRGBO(255, 45, 85, 1),
+      color: Color.fromRGBO(255, 45, 85, 1),
       title: 'Rate us',
-      onTap: () {},
     ),
     _SettingItem(
       name: 'feedback',
       iconName: 'assets/icons/mailbox.svg',
-      color: const Color.fromRGBO(255, 45, 85, 1),
+      color: Color.fromRGBO(255, 45, 85, 1),
       title: 'Send Feedback',
-      onTap: () {},
     ),
   ],
 ];
@@ -60,14 +61,12 @@ class _SettingItem {
     required this.iconName,
     required this.color,
     required this.title,
-    required this.onTap,
   });
 
   final String name;
   final String iconName;
   final Color color;
   final String title;
-  final void Function() onTap;
 }
 
 class ProfilePage extends StatelessWidget {
@@ -175,7 +174,7 @@ class ProfilePage extends StatelessWidget {
                               horizontalTitleGap: 16,
                               contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                               visualDensity: const VisualDensity(vertical: -3),
-                              onTap: () {},
+                              onTap: () => context.push('/settings-${settingsItem.name}'),
                             ),
                             if (settingsGroup.last != settingsItem) const Divider(height: 1, indent: 16),
                           ],

@@ -44,6 +44,9 @@ class AppTheme {
     elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
     bottomSheetTheme: AppBottomSheetTheme.lightBottomSheetTheme,
     bottomNavigationBarTheme: AppBottomNavigationBarTheme.lightBottomNavigationBarTheme,
+    dividerTheme: AppDividerTheme.lightDividerTheme,
+    inputDecorationTheme: AppInputDecorationTheme.lightInputDecorationTheme,
+    appBarTheme: TAppBarTheme.lightAppBarTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -62,9 +65,7 @@ class AppTheme {
     bottomSheetTheme: AppBottomSheetTheme.darkBottomSheetTheme,
     bottomNavigationBarTheme: AppBottomNavigationBarTheme.darkBottomNavigationBarTheme,
     dividerTheme: AppDividerTheme.darkDividerTheme,
-    inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-      constraints: const BoxConstraints(maxHeight: 60),
-    ),
+    inputDecorationTheme: AppInputDecorationTheme.darkInputDecorationTheme,
+    appBarTheme: TAppBarTheme.darkAppBarTheme,
   );
 }
