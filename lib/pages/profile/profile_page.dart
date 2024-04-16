@@ -1,6 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+final _data = [
+  [
+    _SettingItem(
+      name: 'premium',
+      iconName: 'assets/icons/crown.svg',
+      color: const Color.fromRGBO(255, 156, 65, 1),
+      title: 'Get premium',
+      onTap: () {},
+    )
+  ],
+  [
+    _SettingItem(
+      name: 'favorite',
+      iconName: 'assets/icons/star.svg',
+      color: const Color.fromRGBO(72, 112, 255, 1),
+      title: 'Favorite',
+      onTap: () {},
+    )
+  ],
+  [
+    _SettingItem(
+      name: 'policy',
+      iconName: 'assets/icons/document.svg',
+      color: const Color.fromRGBO(0, 217, 113, 1),
+      title: 'Private policy',
+      onTap: () {},
+    ),
+    _SettingItem(
+      name: 'agreement',
+      iconName: 'assets/icons/documents.svg',
+      color: const Color.fromRGBO(0, 217, 113, 1),
+      title: 'License agreement',
+      onTap: () {},
+    ),
+  ],
+  [
+    _SettingItem(
+      name: 'rate',
+      iconName: 'assets/icons/drawing_compass.svg',
+      color: const Color.fromRGBO(255, 45, 85, 1),
+      title: 'Rate us',
+      onTap: () {},
+    ),
+    _SettingItem(
+      name: 'feedback',
+      iconName: 'assets/icons/mailbox.svg',
+      color: const Color.fromRGBO(255, 45, 85, 1),
+      title: 'Send Feedback',
+      onTap: () {},
+    ),
+  ],
+];
+
+class _SettingItem {
+  const _SettingItem({
+    required this.name,
+    required this.iconName,
+    required this.color,
+    required this.title,
+    required this.onTap,
+  });
+
+  final String name;
+  final String iconName;
+  final Color color;
+  final String title;
+  final void Function() onTap;
+}
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -56,6 +125,67 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
+            SliverList.separated(
+              itemCount: _data.length,
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: 32);
+              },
+              itemBuilder: (context, index) {
+                final settingsGroup = _data[index];
+
+                return Container(
+                  decoration: BoxDecoration(
+                    border: Border.symmetric(
+                      horizontal: BorderSide(
+                        width: 1,
+                        color: theme.colorScheme.secondary,
+                      ),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (var settingsItem in settingsGroup)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ListTile(
+                              leading: Container(
+                                padding: const EdgeInsets.all(2.8),
+                                decoration: BoxDecoration(
+                                  color: settingsItem.color,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: SvgPicture.asset(
+                                  settingsItem.iconName,
+                                  colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                                ),
+                              ),
+                              title: Text(
+                                settingsItem.title,
+                                style: theme.textTheme.headlineLarge?.copyWith(
+                                  color: settingsItem.name == 'premium' ? settingsItem.color : null,
+                                ),
+                              ),
+                              trailing: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 15,
+                                color: settingsItem.name == 'premium' ? settingsItem.color : theme.colorScheme.tertiary,
+                              ),
+                              horizontalTitleGap: 16,
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                              visualDensity: const VisualDensity(vertical: -3),
+                              onTap: () {},
+                            ),
+                            if (settingsGroup.last != settingsItem) const Divider(height: 1, indent: 16),
+                          ],
+                        ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            const SliverToBoxAdapter(child: SizedBox(height: 32)),
           ],
         ),
       ),
