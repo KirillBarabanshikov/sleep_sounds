@@ -6,6 +6,7 @@ class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     required this.text,
+    this.textColor,
     required this.onPressed,
     this.icon,
     this.variant = Variant.primary,
@@ -13,6 +14,7 @@ class AppButton extends StatelessWidget {
   });
 
   final String text;
+  final Color? textColor;
   final void Function() onPressed;
   final Widget? icon;
   final Variant variant;
@@ -45,7 +47,10 @@ class AppButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (icon != null) ...[icon!, const SizedBox(width: 4)],
-          Text(text),
+          Text(
+            text,
+            style: theme.textTheme.titleSmall?.copyWith(color: textColor),
+          ),
         ],
       ),
     );

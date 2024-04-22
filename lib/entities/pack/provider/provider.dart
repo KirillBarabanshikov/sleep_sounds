@@ -34,6 +34,7 @@ class PackList extends _$PackList {
             song: 'song',
           ),
         ],
+        isFavorite: true,
       ),
       PackModel(
         name: 'Chill-hop',
@@ -60,6 +61,7 @@ class PackList extends _$PackList {
             song: 'song',
           ),
         ],
+        isFavorite: false,
       ),
       PackModel(
         name: 'Summer night',
@@ -86,6 +88,7 @@ class PackList extends _$PackList {
             song: 'song',
           ),
         ],
+        isFavorite: false,
       ),
       PackModel(
         name: 'Awakening',
@@ -112,6 +115,7 @@ class PackList extends _$PackList {
             song: 'song',
           ),
         ],
+        isFavorite: false,
       ),
       PackModel(
         name: 'Chill-hop',
@@ -138,6 +142,7 @@ class PackList extends _$PackList {
             song: 'song',
           ),
         ],
+        isFavorite: false,
       ),
       PackModel(
         name: 'Lullaby',
@@ -164,6 +169,7 @@ class PackList extends _$PackList {
             song: 'song',
           ),
         ],
+        isFavorite: false,
       ),
     ];
   }

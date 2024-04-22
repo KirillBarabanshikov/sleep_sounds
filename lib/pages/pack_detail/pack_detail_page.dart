@@ -71,8 +71,12 @@ class PackDetailPage extends StatelessWidget {
                     const SizedBox(width: 15),
                     Expanded(
                       child: AppButton(
-                        text: 'Favorite',
-                        icon: const Icon(Icons.star),
+                        text: pack.isFavorite ? 'Unfavorite' : 'Favorite',
+                        textColor: pack.isFavorite ? const Color.fromRGBO(255, 165, 65, 1) : null,
+                        icon: Icon(
+                          pack.isFavorite ? Icons.star_half : Icons.star,
+                          color: pack.isFavorite ? const Color.fromRGBO(255, 165, 65, 1) : null,
+                        ),
                         variant: Variant.secondary,
                         onPressed: () {},
                       ),

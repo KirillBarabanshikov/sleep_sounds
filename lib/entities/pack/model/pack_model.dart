@@ -12,6 +12,7 @@ class PackModel with _$PackModel {
     required String imageDetail,
     required String category,
     required List<SongModel> songs,
+    required bool isFavorite,
   }) = _PackModel;
 
   factory PackModel.fromJson(Map<String, Object?> json) => _$PackModelFromJson(json);

@@ -16,6 +16,7 @@ _$PackModelImpl _$$PackModelImplFromJson(Map<String, dynamic> json) =>
       songs: (json['songs'] as List<dynamic>)
           .map((e) => SongModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      isFavorite: json['isFavorite'] as bool,
     );
 
 Map<String, dynamic> _$$PackModelImplToJson(_$PackModelImpl instance) =>
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$PackModelImplToJson(_$PackModelImpl instance) =>
       'imageDetail': instance.imageDetail,
       'category': instance.category,
       'songs': instance.songs,
+      'isFavorite': instance.isFavorite,
     };
 
 _$SongModelImpl _$$SongModelImplFromJson(Map<String, dynamic> json) =>

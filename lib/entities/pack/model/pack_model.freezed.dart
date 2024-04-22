@@ -26,6 +26,7 @@ mixin _$PackModel {
   String get imageDetail => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   List<SongModel> get songs => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +45,8 @@ abstract class $PackModelCopyWith<$Res> {
       String imageCover,
       String imageDetail,
       String category,
-      List<SongModel> songs});
+      List<SongModel> songs,
+      bool isFavorite});
 }
 
 /// @nodoc
@@ -66,6 +68,7 @@ class _$PackModelCopyWithImpl<$Res, $Val extends PackModel>
     Object? imageDetail = null,
     Object? category = null,
     Object? songs = null,
+    Object? isFavorite = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -92,6 +95,10 @@ class _$PackModelCopyWithImpl<$Res, $Val extends PackModel>
           ? _value.songs
           : songs // ignore: cast_nullable_to_non_nullable
               as List<SongModel>,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -110,7 +117,8 @@ abstract class _$$PackModelImplCopyWith<$Res>
       String imageCover,
       String imageDetail,
       String category,
-      List<SongModel> songs});
+      List<SongModel> songs,
+      bool isFavorite});
 }
 
 /// @nodoc
@@ -130,6 +138,7 @@ class __$$PackModelImplCopyWithImpl<$Res>
     Object? imageDetail = null,
     Object? category = null,
     Object? songs = null,
+    Object? isFavorite = null,
   }) {
     return _then(_$PackModelImpl(
       name: null == name
@@ -156,6 +165,10 @@ class __$$PackModelImplCopyWithImpl<$Res>
           ? _value._songs
           : songs // ignore: cast_nullable_to_non_nullable
               as List<SongModel>,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -169,7 +182,8 @@ class _$PackModelImpl implements _PackModel {
       required this.imageCover,
       required this.imageDetail,
       required this.category,
-      required final List<SongModel> songs})
+      required final List<SongModel> songs,
+      required this.isFavorite})
       : _songs = songs;
 
   factory _$PackModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -194,8 +208,11 @@ class _$PackModelImpl implements _PackModel {
   }
 
   @override
+  final bool isFavorite;
+
+  @override
   String toString() {
-    return 'PackModel(name: $name, description: $description, imageCover: $imageCover, imageDetail: $imageDetail, category: $category, songs: $songs)';
+    return 'PackModel(name: $name, description: $description, imageCover: $imageCover, imageDetail: $imageDetail, category: $category, songs: $songs, isFavorite: $isFavorite)';
   }
 
   @override
@@ -212,13 +229,22 @@ class _$PackModelImpl implements _PackModel {
                 other.imageDetail == imageDetail) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            const DeepCollectionEquality().equals(other._songs, _songs));
+            const DeepCollectionEquality().equals(other._songs, _songs) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, imageCover,
-      imageDetail, category, const DeepCollectionEquality().hash(_songs));
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      description,
+      imageCover,
+      imageDetail,
+      category,
+      const DeepCollectionEquality().hash(_songs),
+      isFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -241,7 +267,8 @@ abstract class _PackModel implements PackModel {
       required final String imageCover,
       required final String imageDetail,
       required final String category,
-      required final List<SongModel> songs}) = _$PackModelImpl;
+      required final List<SongModel> songs,
+      required final bool isFavorite}) = _$PackModelImpl;
 
   factory _PackModel.fromJson(Map<String, dynamic> json) =
       _$PackModelImpl.fromJson;
@@ -258,6 +285,8 @@ abstract class _PackModel implements PackModel {
   String get category;
   @override
   List<SongModel> get songs;
+  @override
+  bool get isFavorite;
   @override
   @JsonKey(ignore: true)
   _$$PackModelImplCopyWith<_$PackModelImpl> get copyWith =>
