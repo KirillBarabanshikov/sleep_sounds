@@ -67,5 +67,6 @@ class AppTheme {
     dividerTheme: AppDividerTheme.darkDividerTheme,
     inputDecorationTheme: AppInputDecorationTheme.darkInputDecorationTheme,
     appBarTheme: TAppBarTheme.darkAppBarTheme,
+    sliderTheme: AppSliderTheme.darkSliderTheme,
   );
 }

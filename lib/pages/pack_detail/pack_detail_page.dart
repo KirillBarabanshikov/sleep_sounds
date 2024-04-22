@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:sleep_sounds/features/player/player_bottom_sheet/player_bottom_sheet.dart';
 
 import '../../entities/pack/pack.dart';
+import '../../shared/ui/ui.dart';
 import '../../widgets/widgets.dart';
 
 class PackDetailPage extends StatelessWidget {
@@ -97,29 +97,40 @@ class PackDetailPage extends StatelessWidget {
                     children: [
                       Text('LIST OF SONGS', style: theme.textTheme.bodySmall),
                       const SizedBox(height: 16),
-                      ...pack.songs.map((e) {
-                        final index = pack.songs.indexOf(e);
+                      ...pack.songs.map((song) {
+                        final index = pack.songs.indexOf(song);
                         final number = '${index < 9 ? 0 : ''}${index + 1}';
                         return Column(
                           children: [
-                            Row(
-                              children: [
-                                Text(number),
-                                const SizedBox(width: 8),
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(32),
-                                    color: theme.colorScheme.background,
+                            GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return PlayerBottomSheet(pack: pack, song: song);
+                                  },
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  Text(number, style: theme.textTheme.bodySmall),
+                                  const SizedBox(width: 8),
+                                  Container(
+                                    width: 32,
+                                    height: 32,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(32),
+                                      color: theme.colorScheme.background,
+                                    ),
+                                    child: const Icon(Icons.play_arrow),
                                   ),
-                                  child: const Icon(Icons.play_arrow),
-                                ),
-                                const SizedBox(width: 16),
-                                Text(e.name, style: theme.textTheme.headlineLarge),
-                              ],
+                                  const SizedBox(width: 16),
+                                  Text(song.name, style: theme.textTheme.headlineLarge),
+                                ],
+                              ),
                             ),
-                            if (e != pack.songs.last) Divider(height: 24, color: theme.colorScheme.tertiary),
+                            if (song != pack.songs.last) Divider(height: 24, color: theme.colorScheme.tertiary),
                           ],
                         );
                       }),

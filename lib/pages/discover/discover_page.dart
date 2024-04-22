@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../entities/pack/pack.dart';
-import '../../widgets/widgets.dart';
+import '../../shared/ui/ui.dart';
 
 const List<Map<String, dynamic>> _filters = [
   {'icon': 'assets/icons/keypad.svg', 'title': 'All'},
