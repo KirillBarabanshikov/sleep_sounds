@@ -35,7 +35,7 @@ class PackCard extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.play_arrow),
+                    child: const Icon(Icons.play_arrow, color: Colors.white),
                   ),
                 ),
               ],

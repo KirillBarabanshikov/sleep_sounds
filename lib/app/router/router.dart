@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../entities/pack/pack.dart';
@@ -38,7 +37,7 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/settings-theme',
       builder: (context, state) {
-        return const SettingsLayout(title: 'Theme', child: Scaffold());
+        return const SettingsLayout(title: 'Theme', child: ThemePage());
       },
     )
   ],

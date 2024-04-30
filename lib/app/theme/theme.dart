@@ -34,11 +34,12 @@ class AppTheme {
     useMaterial3: true,
     fontFamily: 'SF-Pro-Rounded',
     colorScheme: ColorScheme.fromSeed(
-      seedColor: const Color.fromRGBO(72, 112, 255, 1),
+      seedColor: const Color.fromRGBO(0, 112, 255, 1),
       brightness: Brightness.light,
-      background: const Color.fromRGBO(229, 229, 234, 1),
-      primary: const Color.fromRGBO(72, 112, 255, 1),
-      secondary: const Color.fromRGBO(33, 40, 63, 1),
+      background: const Color.fromRGBO(255, 255, 255, 1),
+      primary: const Color.fromRGBO(0, 112, 255, 1),
+      secondary: const Color.fromRGBO(199, 199, 204, 1),
+      tertiary: const Color.fromRGBO(242, 242, 247, 1),
     ),
     textTheme: AppTextTheme.lightTextTheme,
     elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
@@ -47,6 +48,7 @@ class AppTheme {
     dividerTheme: AppDividerTheme.lightDividerTheme,
     inputDecorationTheme: AppInputDecorationTheme.lightInputDecorationTheme,
     appBarTheme: TAppBarTheme.lightAppBarTheme,
+    sliderTheme: AppSliderTheme.lightSliderTheme,
   );
 
   static ThemeData darkTheme = ThemeData(

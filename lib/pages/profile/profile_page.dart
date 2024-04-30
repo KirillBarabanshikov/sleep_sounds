@@ -100,7 +100,7 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       'assets/icons/login_as_user.svg',
-                      colorFilter: ColorFilter.mode(theme.colorScheme.background, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(theme.colorScheme.onBackground, BlendMode.srcIn),
                     ),
                     Text('Authorization', style: theme.textTheme.titleSmall),
                     const Text('In order to access the library of favorite packs of sounds, log in with Apple ID', textAlign: TextAlign.center),
