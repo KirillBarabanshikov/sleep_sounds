@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sleep_sounds/features/auth/auth.dart';
+
+import '../../features/auth/auth.dart';
 
 final _screensData = [
   {
@@ -20,14 +24,14 @@ final _screensData = [
   }
 ];
 
-class WelcomePage extends StatefulWidget {
+class WelcomePage extends ConsumerStatefulWidget {
   const WelcomePage({super.key});
 
   @override
-  State<WelcomePage> createState() => _WelcomePageState();
+  ConsumerState createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _WelcomePageState extends ConsumerState<WelcomePage> {
   final _pageController = PageController();
   int _currentPage = 0;
 
@@ -126,27 +130,32 @@ class _WelcomePageState extends State<WelcomePage> {
             const SizedBox(height: 16),
             SizedBox(
               height: 45,
-              child: GestureDetector(
-                onTap: () => showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return const AuthForm();
-                  },
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.touch_app,
-                      size: 22,
+              child: StreamBuilder(
+                stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text('Logged in as ${snapshot.data!.email!}', style: theme.textTheme.titleSmall);
+                  }
+                  return GestureDetector(
+                    onTap: () {
+                      ref.read(authServiceProvider).signInWithGoogle();
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/icons/google.svg',
+                          colorFilter: ColorFilter.mode(theme.colorScheme.onBackground, BlendMode.srcIn),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Login with Google',
+                          style: theme.textTheme.titleSmall,
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Login',
-                      style: theme.textTheme.titleSmall,
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ],
