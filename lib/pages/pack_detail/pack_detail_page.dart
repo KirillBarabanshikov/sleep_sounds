@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sleep_sounds/features/player/player_bottom_sheet/player_bottom_sheet.dart';
 
 import '../../entities/pack/pack.dart';
@@ -37,17 +38,17 @@ class PackDetailPage extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    const Icon(Icons.star),
+                    SvgPicture.asset('assets/icons/sleeping.svg'),
                     const Text('Mood', style: TextStyle(fontSize: 13, color: Colors.white)),
-                    Text('Lighthearted', style: theme.textTheme.titleMedium),
+                    Text('Lighthearted', style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
                   ],
                 ),
                 const SizedBox(width: 16),
                 Column(
                   children: [
-                    const Icon(Icons.star),
+                    SvgPicture.asset('assets/icons/sleep.svg'),
                     const Text('Dreams', style: TextStyle(fontSize: 13, color: Colors.white)),
-                    Text('Daydreams', style: theme.textTheme.titleMedium),
+                    Text('Daydreams', style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
                   ],
                 ),
               ],
