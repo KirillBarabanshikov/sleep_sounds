@@ -16,7 +16,7 @@ class CurrentThemeMode extends _$CurrentThemeMode {
 
     return ThemeMode.values.singleWhere(
       (themeMode) => themeMode.name == themeModeName,
-      orElse: () => ThemeMode.dark,
+      orElse: () => ThemeMode.system,
     );
   }
 
